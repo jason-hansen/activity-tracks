@@ -1,4 +1,4 @@
-# ACTIVITY TUNES
+# <img src="src/assets/activity_tunes_icon.png" width="50" height="50" /> ACTIVITY TUNES
 **Automatically update your Strava activity's description with the Spotify songs you listened to**
 
 *by Jason Hansen*
@@ -41,11 +41,3 @@
 - https://old.reddit.com/r/Strava/comments/ue5xox/i_have_built_a_strava_add_on_that_renames_your/
 - https://github.com/JeffreyCA/spotify-recently-played-readme
 - https://developer.spotify.com/console/get-recently-played/
-
-## QUESTIONS
-- any way to toggle it?
-- how to handle logins?
-  
-## DATA
-
-![logo](src/assets/activity_tunes_icon.png)
