@@ -1,4 +1,5 @@
-#<img src="src/assets/activity_tunes_icon.png" width="30" /> ACTIVITY TUNES <img src="src/assets/activity_tunes_icon.png" width="30" />
+# <img src="src/assets/activity_tunes_icon.png" width="30" /> ACTIVITY TUNES <img src="src/assets/activity_tunes_icon.png" width="30" />
+
 **Automatically update your Strava activity's description with the Spotify songs you listened to**
 
 *by Jason Hansen*
