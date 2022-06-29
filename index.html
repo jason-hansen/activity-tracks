@@ -1,0 +1,17 @@
+<!doctype html>
+<html>
+<head>
+    <title>Activity Tunes index.html</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+</head>
+
+<body>
+<div class="container">
+    <h1 class="display-1">Activity Tunes</h1>
+    <a href="https://accounts.spotify.com/authorize?show_dialog=true&scope=user-read-email+user-read-recently-played+playlist-modify-public+playlist-modify-private+playlist-read-collaborative&response_type=code&redirect_uri=http://localhost:8081/api/spotify/auth&client_id=7225d09dece944b7879335138c2d458b&state=callbackchecksthis"
+       class="btn btn-primary">Authorize with Spotify</a>
+    <a href="https://www.strava.com/oauth/authorize?approval_prompt=force&client_id=76589&response_type=code&redirect_uri=http://localhost:8081/api/strava/auth&approval_prompt=auto&scope=read,activity:read_all,activity:write"
+       class="btn btn-primary">Authorize with Strava</a>
+</div>
+</body>
+</html>

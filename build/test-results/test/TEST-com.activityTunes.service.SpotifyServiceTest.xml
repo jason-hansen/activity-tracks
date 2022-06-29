@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.activityTunes.service.SpotifyServiceTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-06-23T22:42:36" hostname="Jason-Hansens-MacBook-Pro.local" time="104.755">
+  <properties/>
+  <testcase name="getAccessToken()" classname="com.activityTunes.service.SpotifyServiceTest" time="104.755"/>
+  <system-out><![CDATA[200 OK
+BQDYxQ4RiZaXh3lSV-v2q8umbHYW7iLrMQGF4YVRADFNrhrR6_AuLQyfdUBIZCHc3FOPr7u4JY1nmzhaRmlYTio4K39HTYnTMKu0FxSC7Qn-QK-l80Q
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
