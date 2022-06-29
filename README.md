@@ -1,15 +1,18 @@
-# <img src="src/assets/activity_tunes_icon.png" width="50" height="50" /> ACTIVITY TUNES
+#<img src="src/assets/activity_tunes_icon.png" width="30" /> ACTIVITY TUNES <img src="src/assets/activity_tunes_icon.png" width="30" />
 **Automatically update your Strava activity's description with the Spotify songs you listened to**
 
 *by Jason Hansen*
 
 ## HOW TO USE
-- create an account or login
-- authenticate with strava account and spotify account
-- start running!
+- login at: <site url here>
+- authenticate with your Strava account 
+- authenticate with your Spotify account
+- start listening on Spotify while tracking your activities on Strava!
+- the app will work its magic after each activity is uploaded to Strava
 
 ## TODO
 - strava webhook & ngrok
+  - token refreshing API calls during webhook stuff
 - error handling in api calls?
 - aws
   - go over React tutorial
@@ -21,7 +24,7 @@
   - auth
   - tie together both login options
   - database and not just in memory
-- token refreshing?
+- readme: structure, code flow, data explainers
 
 ## ROADMAP
 1. regular flow with spotify
