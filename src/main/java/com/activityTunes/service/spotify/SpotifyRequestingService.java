@@ -43,20 +43,11 @@ public class SpotifyRequestingService {
         return objectMapper.readValue(response.body(), SpotifyAccessTokenResponse.class);
     }
 
-    public SpotifyRecentlyPlayedResponse getRecentlyPlayed(String accessToken) throws IOException, InterruptedException {
-        return getRecentlyPlayed(accessToken, 30, new Date().getTime());
+    public SpotifyRecentlyPlayedResponse getRecentlyPlayedTracks(String accessToken) throws IOException, InterruptedException {
+        return getRecentlyPlayedTracks(accessToken, 30, new Date().getTime());
     }
 
-    public SpotifyRecentlyPlayedResponse getRecentlyPlayed(String accessToken, int count) throws IOException, InterruptedException {
-        return getRecentlyPlayed(accessToken, count, new Date().getTime());
-    }
-
-    private SpotifyRecentlyPlayedResponse getRecentlyPlayed(String accessToken, int count, Long beforeMillis) throws IOException, InterruptedException {
-//        curl --request GET \
-//        --url https://api.spotify.com/v1/me/player/recently-played?limit=2 \
-//        --header 'Authorization: Bearer <ACCESS_TOKEN>' \
-//        --header 'Content-Type: application/json'
-
+    private SpotifyRecentlyPlayedResponse getRecentlyPlayedTracks(String accessToken, int count, Long beforeMillis) throws IOException, InterruptedException {
         ObjectMapper objectMapper = new ObjectMapper();
 
         HttpClient client = HttpClient.newHttpClient();

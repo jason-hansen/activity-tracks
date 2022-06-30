@@ -1,5 +1,6 @@
 package com.activityTunes.service.strava.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,6 +11,7 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @RequiredArgsConstructor
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Athlete {
     private int id;
     private String username;
@@ -41,28 +43,4 @@ public class Athlete {
     private String profile;
     private Object friend;
     private Object follower;
-}
-
-@Data
-@AllArgsConstructor
-@RequiredArgsConstructor
-class Shoe {
-    private String id;
-    private boolean primary;
-    private String name;
-    @JsonProperty("resource_state")
-    private int resourceState;
-    private int distance;
-}
-
-@Data
-@AllArgsConstructor
-@RequiredArgsConstructor
-class Bike {
-    private String id;
-    private boolean primary;
-    private String name;
-    @JsonProperty("resource_state")
-    private int resourceState;
-    private int distance;
 }

@@ -9,7 +9,7 @@ import java.util.HashMap;
 @Service
 public class DataPersistingService {
 
-    private final HashMap<String, HashMap<String, HashMap<String, String>>> data;
+    public final HashMap<String, HashMap<String, HashMap<String, String>>> data;
 
     public DataPersistingService() {
         data = new HashMap<>();

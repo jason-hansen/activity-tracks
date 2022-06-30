@@ -14,6 +14,8 @@
 ## TODO
 - strava webhook & ngrok
   - token refreshing API calls during webhook stuff
+- dummy .env to fill out
+- unit tests! at least for TrackService.java
 - error handling in api calls?
 - aws
   - go over React tutorial
