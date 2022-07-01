@@ -8,6 +8,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Cursors {
-    public String after;
+    public String after; // to use as key to find the next page of items.
     public String before;
 }

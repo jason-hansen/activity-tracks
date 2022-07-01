@@ -12,38 +12,26 @@
 - the app will work its magic after each activity is uploaded to Strava
 
 ## TODO
-- strava webhook & ngrok
-  - token refreshing API calls during webhook stuff
+- why spotify limit to 20 not accepting param of 50
 - dummy .env to fill out
+- learn more about token refreshing... do it when doing API calls?
+- logging colors? verbose config for DEBUG? etc.
 - unit tests! at least for TrackService.java
 - error handling in api calls?
+- how to actually store user id logins and stuff?
 - aws
-  - go over React tutorial
+  - go over React tutorial https://aws.amazon.com/getting-started/hands-on/build-react-app-amplify-graphql/module-three/
     - design frontend
-      - logo
-      - login/create account
-      - 2 auth buttons that don't link, but swap url then swap back when returns
-      - switch to pause service
-  - auth
+      - login page
+        - login/create account
+      - logged in page
+        - 2 auth buttons that don't link, but swap url then swap back when returns
+        - switch to pause service
+      - about page
   - tie together both login options
+    - mabye just have users auth with stava first and then I'll store a map of athlete id -> strava stuff & spotify stuff
   - database and not just in memory
-- readme: structure, code flow, data explainers
-
-## ROADMAP
-1. regular flow with spotify
-2. 
-3. other integrations beyond spotify?
-   1. apple music
-   2. apple podcasts, overcast, pocket casts, soundcloud, audible
-
-## LOGIC
-1. upload/create strava activity https://developers.strava.com/docs/webhooks/
-2. spotify get request for recently played songs https://developer.spotify.com/documentation/web-api/reference/#/operations/get-recently-played
-3. do math to calculate the ones that occurred during your activity (all the spotify.played_at that are > strava.event_time)
-  1. the RecentlyPlayedResponse has PlayHistory[], and PlayHistory has a timestamp played_at
-4. Strava PUT to update the activity description with songs listed out https://developers.strava.com/docs/reference/#api-Activities-updateActivityById
-
-## RESOURCES
-- https://old.reddit.com/r/Strava/comments/ue5xox/i_have_built_a_strava_add_on_that_renames_your/
-- https://github.com/JeffreyCA/spotify-recently-played-readme
-- https://developer.spotify.com/console/get-recently-played/
+  - auth via aws?
+- readme: structure, code flow, how it works/diagrams (include in readme and actual site?)
+- handle when users revoke spotify/strava access
+- integrate with Apple Music

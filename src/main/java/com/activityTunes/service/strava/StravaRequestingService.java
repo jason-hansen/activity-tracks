@@ -1,9 +1,11 @@
 package com.activityTunes.service.strava;
 
+import com.activityTunes.service.strava.model.DetailedActivity;
 import com.activityTunes.service.strava.model.StravaAccessTokenResponse;
 import com.activityTunes.service.strava.model.SummaryActivity;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.github.cdimascio.dotenv.Dotenv;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -13,6 +15,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.HashMap;
 
+@Slf4j
 @Service
 public class StravaRequestingService {
 
@@ -42,7 +45,7 @@ public class StravaRequestingService {
         return objectMapper.readValue(response.body(), StravaAccessTokenResponse.class);
     }
 
-    public SummaryActivity getActivityById(String accessToken, String activityId) throws IOException, InterruptedException {
+    public DetailedActivity getActivityById(String accessToken, String activityId) throws IOException, InterruptedException {
         ObjectMapper objectMapper = new ObjectMapper();
         HttpClient client = HttpClient.newHttpClient();
 
@@ -54,23 +57,26 @@ public class StravaRequestingService {
                 .build();
 
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-        return objectMapper.readValue(response.body(), SummaryActivity.class);
+        DetailedActivity detailedActivity = objectMapper.readValue(response.body(), DetailedActivity.class);
+        log.info(String.format("Retrieved summary activity: %s", detailedActivity));
+        return detailedActivity;
     }
 
-    public void updateActivityDescription(String accessToken, SummaryActivity summaryActivity, String newDescription) throws IOException, InterruptedException {
+    public void updateActivityDescription(String accessToken, DetailedActivity detailedActivity, String newDescription) throws IOException, InterruptedException {
         ObjectMapper objectMapper = new ObjectMapper();
         HttpClient client = HttpClient.newHttpClient();
 
-        UpdatableActivity updatableActivity = new UpdatableActivity(summaryActivity, newDescription);
+        UpdatableActivity updatableActivity = new UpdatableActivity(detailedActivity, newDescription);
         String requestBody = objectMapper.writeValueAsString(updatableActivity);
 
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(API_BASE_URL + "activities/" + summaryActivity.getId()))
+                .uri(URI.create(API_BASE_URL + "activities/" + detailedActivity.getId()))
                 .PUT(HttpRequest.BodyPublishers.ofString(requestBody))
                 .header("Content-Type", "application/json")
                 .header("Authorization", "Bearer " + accessToken)
                 .build();
 
+        log.info(String.format("Updated activity: %s with description: %s", detailedActivity.getId(), updatableActivity.getDescription()));
         client.send(request, HttpResponse.BodyHandlers.ofString());
     }
 }

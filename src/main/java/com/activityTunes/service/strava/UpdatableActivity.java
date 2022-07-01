@@ -1,6 +1,6 @@
 package com.activityTunes.service.strava;
 
-import com.activityTunes.service.strava.model.SummaryActivity;
+import com.activityTunes.service.strava.model.DetailedActivity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -17,12 +17,12 @@ public class UpdatableActivity {
     private ActivityType type;
     private String gear_id;
 
-    public UpdatableActivity(SummaryActivity summaryActivity, String newDescription) {
-        this.commute = summaryActivity.isCommute();
-        this.trainer = summaryActivity.isTrainer();
-        this.hide_from_home = summaryActivity.isHide_from_home();
-        this.description = newDescription;
-        this.type = summaryActivity.getType();
-        this.gear_id = summaryActivity.getGear_id();
+    public UpdatableActivity(DetailedActivity detailedActivity, String newDescription) {
+        this.commute = detailedActivity.isCommute();
+        this.trainer = detailedActivity.isTrainer();
+        this.hide_from_home = detailedActivity.isHide_from_home();
+        this.description = detailedActivity.getDescription() + "\n" + newDescription;
+        this.type = detailedActivity.getType();
+        this.gear_id = detailedActivity.getGear_id();
     }
 }

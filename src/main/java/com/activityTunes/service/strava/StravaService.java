@@ -6,6 +6,7 @@ import com.activityTunes.service.data.DataRetrievingService;
 import com.activityTunes.service.spotify.SpotifyRequestingService;
 import com.activityTunes.service.spotify.model.SpotifyRecentlyPlayedResponse;
 import com.activityTunes.service.spotify.model.Track;
+import com.activityTunes.service.strava.model.DetailedActivity;
 import com.activityTunes.service.strava.model.StravaAccessTokenResponse;
 import com.activityTunes.service.strava.model.SummaryActivity;
 import com.activityTunes.service.track.TrackService;
@@ -14,6 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 @Slf4j
@@ -34,18 +36,13 @@ public class StravaService {
     }
 
     public void handleWebhook(WebhookData webhookData) {
-//        {
-//            "aspect_type": "update",
-//            "event_time": 1516126040,
-//            "object_id": 1360128428,
-//            "object_type": "activity",
-//            "owner_id": 134815,
-//            "subscription_id": 120475,
-//            "updates": {
-//                "title": "Messy"
-//            }
-//        }
-        // TODO do some checking to make sure it's an activity upload
+        // only process type ACTIVITY with aspect CREATE
+        if (!webhookData.getObjectType().equalsIgnoreCase("activity")
+                || !webhookData.getAspectType().equalsIgnoreCase("create")) {
+            return;
+        }
+
+        log.info("Received webhook event: " + webhookData);
 
         String athleteId = String.valueOf(webhookData.getOwnerId());
         String activityId = String.valueOf(webhookData.getObjectId());
@@ -54,14 +51,14 @@ public class StravaService {
             String uuid = dataRetrievingService.getUuidByStravaAthleteId(athleteId);
             String stravaAccessToken = dataRetrievingService.getStravaAccessTokenByUuid(uuid);
             String spotifyAccessToken = dataRetrievingService.getSpotifyAccessTokenByUuid(uuid);
-            SummaryActivity summaryActivity = stravaRequestingService.getActivityById(stravaAccessToken, activityId);
+            DetailedActivity detailedActivity = stravaRequestingService.getActivityById(stravaAccessToken, activityId);
             SpotifyRecentlyPlayedResponse recentlyPlayedResponse = spotifyRequestingService.getRecentlyPlayedTracks(spotifyAccessToken);
             List<Track> tracks = trackService.filterTracksPlayedDuringActivity(
                     recentlyPlayedResponse,
-                    summaryActivity.getStart_date_local().getTime(),
-                    computeEndTimeMillis(summaryActivity.getStart_date_local().getTime(), summaryActivity.getElapsed_time()));
+                    detailedActivity.getStart_date().getTime(),
+                    computeEndTimeMillis(detailedActivity.getStart_date().getTime(), detailedActivity.getElapsed_time()));
             String newDescription = trackService.transformTracksToDescription(tracks);
-            stravaRequestingService.updateActivityDescription(stravaAccessToken, summaryActivity, newDescription);
+            stravaRequestingService.updateActivityDescription(stravaAccessToken, detailedActivity, newDescription);
         } catch (IOException | InterruptedException e) {
             log.info("Wasn't able to handle the webhook correctly");
             e.printStackTrace();
@@ -69,6 +66,8 @@ public class StravaService {
     }
 
     private long computeEndTimeMillis(long startTimeMillis, int elapsedTimeSeconds) {
-        return startTimeMillis + (elapsedTimeSeconds * 1000L);
+        long endTimeMillis = startTimeMillis + (elapsedTimeSeconds * 1000L);
+        log.info(String.format("Gathering tracks between %s and %s", new Date(startTimeMillis), new Date(endTimeMillis)));
+        return endTimeMillis;
     }
 }

@@ -9,19 +9,19 @@ public class WebhookData {
     private String aspectType; // either create, update, or delete
 
     @JsonProperty("event_time")
-    private int eventTime;
+    private Long eventTime;
 
     @JsonProperty("object_id")
-    private int objectId; // either activity id or athlete id
+    private Long objectId; // either activity id or athlete id
 
     @JsonProperty("object_type")
     private String objectType; // either athlete or activity
 
     @JsonProperty("owner_id")
-    private int ownerId;
+    private Long ownerId;
 
     @JsonProperty("subscription_id")
-    private int subscriptionId;
+    private Long subscriptionId;
 
     private Updates updates;
 }

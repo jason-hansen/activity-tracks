@@ -13,7 +13,7 @@ public class SpotifyRecentlyPlayedResponse {
 
     private ArrayList<Item> items;
     private String next;
-    private Cursors cursors;
+    private Cursors cursors; // used to find the next set of items.
     private int limit;
     private String href;
 }

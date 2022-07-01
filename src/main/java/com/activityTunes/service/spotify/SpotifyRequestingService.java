@@ -5,6 +5,7 @@ import com.activityTunes.service.spotify.model.SpotifyRecentlyPlayedResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.github.cdimascio.dotenv.Dotenv;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -15,6 +16,7 @@ import java.net.http.HttpResponse;
 import java.util.Base64;
 import java.util.Date;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class SpotifyRequestingService {
@@ -44,7 +46,7 @@ public class SpotifyRequestingService {
     }
 
     public SpotifyRecentlyPlayedResponse getRecentlyPlayedTracks(String accessToken) throws IOException, InterruptedException {
-        return getRecentlyPlayedTracks(accessToken, 30, new Date().getTime());
+        return getRecentlyPlayedTracks(accessToken, 50, new Date().getTime());
     }
 
     private SpotifyRecentlyPlayedResponse getRecentlyPlayedTracks(String accessToken, int count, Long beforeMillis) throws IOException, InterruptedException {
@@ -61,6 +63,8 @@ public class SpotifyRequestingService {
                 .build();
 
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-        return objectMapper.readValue(response.body(), SpotifyRecentlyPlayedResponse.class);
+        SpotifyRecentlyPlayedResponse recentlyPlayedResponse = objectMapper.readValue(response.body(), SpotifyRecentlyPlayedResponse.class);
+        log.info("Retrieved recently played response: " + recentlyPlayedResponse);
+        return recentlyPlayedResponse;
     }
 }

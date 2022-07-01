@@ -16,28 +16,26 @@ public class DataPersistingService {
     }
 
     public void persistSpotifyTokens(String uuid, String accessToken, String refreshToken) {
-        HashMap<String, String> userTokens = new HashMap<>();
-        userTokens.put("accessToken", accessToken);
-        userTokens.put("refreshToken", refreshToken);
+        HashMap<String, String> spotifyLogin = new HashMap<>();
+        spotifyLogin.put("accessToken", accessToken);
+        spotifyLogin.put("refreshToken", refreshToken);
 
-        HashMap<String, HashMap<String, String>> spotify = new HashMap<>();
-        spotify.put("spotify", userTokens);
-
-        data.put(uuid, spotify);
+        HashMap<String, HashMap<String, String>> existingLoginsForUser = data.getOrDefault(uuid, new HashMap<>());
+        existingLoginsForUser.put("spotify", spotifyLogin);
+        data.put(uuid, existingLoginsForUser);
 
         data.forEach((key, value) -> log.info(key + " " + value));
     }
 
     public void persistStravaTokens(String uuid, int athleteId, String accessToken, String refreshToken) {
-        HashMap<String, String> userTokens = new HashMap<>();
-        userTokens.put("athleteId", String.valueOf(athleteId));
-        userTokens.put("accessToken", accessToken);
-        userTokens.put("refreshToken", refreshToken);
+        HashMap<String, String> stravaLogin = new HashMap<>();
+        stravaLogin.put("athleteId", String.valueOf(athleteId));
+        stravaLogin.put("accessToken", accessToken);
+        stravaLogin.put("refreshToken", refreshToken);
 
-        HashMap<String, HashMap<String, String>> strava = new HashMap<>();
-        strava.put("strava", userTokens);
-
-        data.put(uuid, strava);
+        HashMap<String, HashMap<String, String>> existingLoginsForUser = data.getOrDefault(uuid, new HashMap<>());
+        existingLoginsForUser.put("strava", stravaLogin);
+        data.put(uuid, existingLoginsForUser);
 
         data.forEach((key, value) -> log.info(key + " " + value));
     }
