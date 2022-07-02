@@ -13,7 +13,6 @@
 
 ## TODO
 - why spotify limit to 20 not accepting param of 50
-- dummy .env to fill out
 - learn more about token refreshing... do it when doing API calls?
 - logging colors? verbose config for DEBUG? etc.
 - unit tests! at least for TrackService.java
