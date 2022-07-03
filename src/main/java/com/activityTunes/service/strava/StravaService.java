@@ -30,8 +30,7 @@ public class StravaService {
 
     public void handleAuthCode(String authCode) throws IOException, InterruptedException {
         StravaAccessTokenResponse accessTokenResponse = stravaRequestingService.getAccessTokenFromAuthCode(authCode);
-//        String uuid = dataRetrievingService.getUuidByStravaAthleteId(String.valueOf(accessTokenResponse.getAthlete().getId()));
-        dataPersistingService.persistStravaTokens(accessTokenResponse.getAthlete().getId(), accessTokenResponse.getAccessToken(), accessTokenResponse.getRefreshToken());
+        dataPersistingService.persistStravaTokens(String.valueOf(accessTokenResponse.getAthlete().getId()), accessTokenResponse.getAccessToken(), accessTokenResponse.getRefreshToken());
     }
 
     public void handleWebhook(WebhookData webhookData) {

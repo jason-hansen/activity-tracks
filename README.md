@@ -10,7 +10,6 @@
 - the app will work its magic after each activity is uploaded to Strava
 
 ### TODO
-- get consistent with athleteId parsing
 - unit tests! at least for TrackService.java
 - error handling in api calls?
 - why spotify limit to 20 not accepting param of 50

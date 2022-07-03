@@ -17,20 +17,20 @@ public class DataPersistingService {
         data = new HashMap<>();
     }
 
-    public void persistSpotifyTokens(int athleteId, String accessToken, String refreshToken) {
+    public void persistSpotifyTokens(String athleteId, String accessToken, String refreshToken) {
         AuthTokens spotifyAuthTokens = new AuthTokens(accessToken, refreshToken);
-        UserAuth existingLoginsForUser = data.getOrDefault(String.valueOf(athleteId), new UserAuth());
+        UserAuth existingLoginsForUser = data.getOrDefault(athleteId, new UserAuth());
         existingLoginsForUser.setSpotifyTokens(spotifyAuthTokens);
-        data.put(String.valueOf(athleteId), existingLoginsForUser);
+        data.put(athleteId, existingLoginsForUser);
 
         data.forEach((key, value) -> log.info(key + " " + value));
     }
 
-    public void persistStravaTokens(int athleteId, String accessToken, String refreshToken) {
+    public void persistStravaTokens(String athleteId, String accessToken, String refreshToken) {
         AuthTokens stravaAuthTokens = new AuthTokens(accessToken, refreshToken);
-        UserAuth existingLoginsForUser = data.getOrDefault(String.valueOf(athleteId), new UserAuth());
+        UserAuth existingLoginsForUser = data.getOrDefault(athleteId, new UserAuth());
         existingLoginsForUser.setStravaTokens(stravaAuthTokens);
-        data.put(String.valueOf(athleteId), existingLoginsForUser);
+        data.put(athleteId, existingLoginsForUser);
 
         data.forEach((key, value) -> log.info(key + " " + value));
     }

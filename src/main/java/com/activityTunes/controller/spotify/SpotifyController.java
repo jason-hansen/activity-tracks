@@ -28,7 +28,7 @@ public class SpotifyController {
 
         try {
             spotifyService.handleAuthCode(code);
-        } catch (IOException | InterruptedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return new ResponseEntity<>(HttpStatus.OK);

@@ -51,12 +51,6 @@ public class SpotifyRequestingService {
         ObjectMapper objectMapper = new ObjectMapper();
         HttpClient client = HttpClient.newHttpClient();
 
-        HashMap<String, Object> bodyValues = new HashMap<>();
-        bodyValues.put("grant_type", "refresh_token");
-        bodyValues.put("refresh_token", refreshToken);
-
-        String requestBody = objectMapper.writeValueAsString(bodyValues);
-
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(ACCOUNTS_BASE_URL + "/api/token?grant_type=refresh_token&refresh_token=" + refreshToken))
                 .POST(HttpRequest.BodyPublishers.ofString(""))

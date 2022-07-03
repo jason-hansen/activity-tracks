@@ -16,9 +16,9 @@ public class SpotifyService {
     private final DataPersistingService dataPersistingService;
     private final DataRetrievingService dataRetrievingService;
 
-    public void handleAuthCode(String authCode) throws IOException, InterruptedException {
+    public void handleAuthCode(String authCode) throws Exception {
         SpotifyAccessTokenResponse accessTokenResponse = spotifyRequestingService.getAccessTokenFromAuthCode(authCode);
-        int athleteId = dataRetrievingService.getAthleteId(); // TODO maybe I can pull this from the frontend somehow? as a dynamic query param given to spotify in the callback?
+        String athleteId = dataRetrievingService.getAthleteId(); // TODO maybe I can pull this from the frontend somehow? as a dynamic query param given to spotify in the callback?
         dataPersistingService.persistSpotifyTokens(athleteId, accessTokenResponse.getAccessToken(), accessTokenResponse.getRefreshToken());
     }
 }

@@ -23,31 +23,31 @@ public class DataRetrievingService {
 
     public String getStravaAccessTokenByAthleteId(String athleteId) throws IOException, InterruptedException {
         String refreshToken = dataPersistingService.data
-                .getOrDefault(String.valueOf(athleteId), new UserAuth())
+                .getOrDefault(athleteId, new UserAuth())
                 .getStravaTokens()
                 .getRefreshToken();
         StravaAccessTokenRefreshResponse refreshResponse = getRefreshedStravaAccessToken(refreshToken);
-        dataPersistingService.persistStravaTokens(Integer.parseInt(athleteId), refreshResponse.getAccessToken(), refreshResponse.getRefreshToken());
+        dataPersistingService.persistStravaTokens(athleteId, refreshResponse.getAccessToken(), refreshResponse.getRefreshToken());
         return refreshResponse.getAccessToken();
     }
 
     public String getSpotifyAccessTokenByAthleteId(String athleteId) throws IOException, InterruptedException {
         String refreshToken = dataPersistingService.data
-                .getOrDefault(String.valueOf(athleteId), new UserAuth())
+                .getOrDefault(athleteId, new UserAuth())
                 .getSpotifyTokens()
                 .getRefreshToken();
         SpotifyAccessTokenRefreshResponse refreshResponse = getRefreshedSpotifyAccessToken(refreshToken);
-        dataPersistingService.persistSpotifyTokens(Integer.parseInt(athleteId), refreshResponse.getAccessToken(), refreshToken);
+        dataPersistingService.persistSpotifyTokens(athleteId, refreshResponse.getAccessToken(), refreshToken);
         return refreshResponse.getAccessToken();
     }
 
-    public int getAthleteId() {
+    public String getAthleteId() throws Exception {
         for (Map.Entry<String, UserAuth> userAuthEntry : dataPersistingService.data.entrySet()) {
             if (userAuthEntry.getValue().getSpotifyTokens() == null && !userAuthEntry.getValue().getStravaTokens().isEmpty()) {
-                return Integer.parseInt(userAuthEntry.getKey());
+                return userAuthEntry.getKey();
             }
         }
-        return -1;
+        throw new Exception("Athlete id not found");
     }
 
     private StravaAccessTokenRefreshResponse getRefreshedStravaAccessToken(String refreshToken) throws IOException, InterruptedException {
