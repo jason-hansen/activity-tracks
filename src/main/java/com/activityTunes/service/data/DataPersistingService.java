@@ -1,5 +1,7 @@
 package com.activityTunes.service.data;
 
+import com.activityTunes.service.data.model.AuthTokens;
+import com.activityTunes.service.data.model.UserAuth;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -9,33 +11,26 @@ import java.util.HashMap;
 @Service
 public class DataPersistingService {
 
-    public final HashMap<String, HashMap<String, HashMap<String, String>>> data;
+    public final HashMap<String, UserAuth> data;
 
     public DataPersistingService() {
         data = new HashMap<>();
     }
 
-    public void persistSpotifyTokens(String uuid, String accessToken, String refreshToken) {
-        HashMap<String, String> spotifyLogin = new HashMap<>();
-        spotifyLogin.put("accessToken", accessToken);
-        spotifyLogin.put("refreshToken", refreshToken);
-
-        HashMap<String, HashMap<String, String>> existingLoginsForUser = data.getOrDefault(uuid, new HashMap<>());
-        existingLoginsForUser.put("spotify", spotifyLogin);
-        data.put(uuid, existingLoginsForUser);
+    public void persistSpotifyTokens(int athleteId, String accessToken, String refreshToken) {
+        AuthTokens spotifyAuthTokens = new AuthTokens(accessToken, refreshToken);
+        UserAuth existingLoginsForUser = data.getOrDefault(String.valueOf(athleteId), new UserAuth());
+        existingLoginsForUser.setSpotifyTokens(spotifyAuthTokens);
+        data.put(String.valueOf(athleteId), existingLoginsForUser);
 
         data.forEach((key, value) -> log.info(key + " " + value));
     }
 
-    public void persistStravaTokens(String uuid, int athleteId, String accessToken, String refreshToken) {
-        HashMap<String, String> stravaLogin = new HashMap<>();
-        stravaLogin.put("athleteId", String.valueOf(athleteId));
-        stravaLogin.put("accessToken", accessToken);
-        stravaLogin.put("refreshToken", refreshToken);
-
-        HashMap<String, HashMap<String, String>> existingLoginsForUser = data.getOrDefault(uuid, new HashMap<>());
-        existingLoginsForUser.put("strava", stravaLogin);
-        data.put(uuid, existingLoginsForUser);
+    public void persistStravaTokens(int athleteId, String accessToken, String refreshToken) {
+        AuthTokens stravaAuthTokens = new AuthTokens(accessToken, refreshToken);
+        UserAuth existingLoginsForUser = data.getOrDefault(String.valueOf(athleteId), new UserAuth());
+        existingLoginsForUser.setStravaTokens(stravaAuthTokens);
+        data.put(String.valueOf(athleteId), existingLoginsForUser);
 
         data.forEach((key, value) -> log.info(key + " " + value));
     }

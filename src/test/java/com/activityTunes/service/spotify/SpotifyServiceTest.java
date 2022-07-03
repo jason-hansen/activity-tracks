@@ -1,19 +1,20 @@
-package com.activityTunes.service;
+package com.activityTunes.service.spotify;
 
 import com.activityTunes.service.data.DataPersistingService;
 import com.activityTunes.service.spotify.SpotifyRequestingService;
 import com.activityTunes.service.spotify.SpotifyService;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.io.IOException;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @ExtendWith(MockitoExtension.class)
 class SpotifyServiceTest {
 
+    @InjectMocks
     private SpotifyService spotifyService;
 
     @Mock
@@ -22,19 +23,15 @@ class SpotifyServiceTest {
     @Mock
     private DataPersistingService dataPersistingServiceMock;
 
-    @BeforeEach
-    void setup() {
-        spotifyService = new SpotifyService(spotifyRequestingServiceMock, dataPersistingServiceMock);
-    }
-
     @Test
-    void getAccessToken() throws IOException, InterruptedException {
+    void testHandleAuthCode() {
         // GIVEN
-        String authCode = "authCode";
 
         // WHEN
-        spotifyService.handleAuthCode(authCode);
 
         // THEN
+        assertNotNull(spotifyService);
+        assertNotNull(spotifyRequestingServiceMock);
+        assertNotNull(dataPersistingServiceMock);
     }
 }

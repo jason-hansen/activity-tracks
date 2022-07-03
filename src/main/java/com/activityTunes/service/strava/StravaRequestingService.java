@@ -1,8 +1,10 @@
 package com.activityTunes.service.strava;
 
 import com.activityTunes.service.strava.model.DetailedActivity;
+import com.activityTunes.service.strava.model.StravaAccessTokenRefreshResponse;
 import com.activityTunes.service.strava.model.StravaAccessTokenResponse;
-import com.activityTunes.service.strava.model.SummaryActivity;
+import com.activityTunes.service.strava.model.UpdatableActivity;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.github.cdimascio.dotenv.Dotenv;
 import lombok.extern.slf4j.Slf4j;
@@ -43,6 +45,28 @@ public class StravaRequestingService {
 
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
         return objectMapper.readValue(response.body(), StravaAccessTokenResponse.class);
+    }
+
+    public StravaAccessTokenRefreshResponse getRefreshedAccessToken(String refreshToken) throws IOException, InterruptedException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        HttpClient client = HttpClient.newHttpClient();
+
+        HashMap<String, Object> bodyValues = new HashMap<>();
+        bodyValues.put("client_id", STRAVA_CLIENT_ID);
+        bodyValues.put("client_secret", STRAVA_CLIENT_SECRET);
+        bodyValues.put("grant_type", "refresh_token");
+        bodyValues.put("refresh_token", refreshToken);
+
+        String requestBody = objectMapper.writeValueAsString(bodyValues);
+
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(OAUTH_BASE_URL))
+                .header("Content-Type", "application/json")
+                .POST(HttpRequest.BodyPublishers.ofString(requestBody))
+                .build();
+
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        return objectMapper.readValue(response.body(), StravaAccessTokenRefreshResponse.class);
     }
 
     public DetailedActivity getActivityById(String accessToken, String activityId) throws IOException, InterruptedException {

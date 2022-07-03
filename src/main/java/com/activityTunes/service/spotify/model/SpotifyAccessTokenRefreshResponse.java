@@ -8,7 +8,7 @@ import lombok.RequiredArgsConstructor;
 @Data
 @AllArgsConstructor
 @RequiredArgsConstructor
-public class SpotifyAccessTokenResponse {
+public class SpotifyAccessTokenRefreshResponse {
     @JsonProperty("access_token")
     private String accessToken;
 
@@ -16,10 +16,7 @@ public class SpotifyAccessTokenResponse {
     private String tokenType;
 
     @JsonProperty("expires_in")
-    private int expiresIn; // 1 hour after it was created
-
-    @JsonProperty("refresh_token")
-    private String refreshToken;
+    private int expiresIn;
 
     private String scope;
 }

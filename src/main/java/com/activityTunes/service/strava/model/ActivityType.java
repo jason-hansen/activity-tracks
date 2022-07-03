@@ -1,4 +1,4 @@
-package com.activityTunes.service.strava;
+package com.activityTunes.service.strava.model;
 
 public enum ActivityType {
     AlpineSki,

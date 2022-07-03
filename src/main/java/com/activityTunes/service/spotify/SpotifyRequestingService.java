@@ -2,6 +2,7 @@ package com.activityTunes.service.spotify;
 
 import com.activityTunes.service.spotify.model.SpotifyAccessTokenResponse;
 import com.activityTunes.service.spotify.model.SpotifyRecentlyPlayedResponse;
+import com.activityTunes.service.spotify.model.SpotifyAccessTokenRefreshResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.github.cdimascio.dotenv.Dotenv;
 import lombok.RequiredArgsConstructor;
@@ -15,6 +16,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.Base64;
 import java.util.Date;
+import java.util.HashMap;
 
 @Slf4j
 @Service
@@ -43,6 +45,27 @@ public class SpotifyRequestingService {
 
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
         return objectMapper.readValue(response.body(), SpotifyAccessTokenResponse.class);
+    }
+
+    public SpotifyAccessTokenRefreshResponse getRefreshedAccessToken(String refreshToken) throws IOException, InterruptedException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        HttpClient client = HttpClient.newHttpClient();
+
+        HashMap<String, Object> bodyValues = new HashMap<>();
+        bodyValues.put("grant_type", "refresh_token");
+        bodyValues.put("refresh_token", refreshToken);
+
+        String requestBody = objectMapper.writeValueAsString(bodyValues);
+
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(ACCOUNTS_BASE_URL + "/api/token?grant_type=refresh_token&refresh_token=" + refreshToken))
+                .POST(HttpRequest.BodyPublishers.ofString(""))
+                .header("Content-Type", "application/x-www-form-urlencoded")
+                .header("Authorization", "Basic " + Base64.getEncoder().encodeToString((SPOTIFY_CLIENT_ID + ":" + SPOTIFY_CLIENT_SECRET).getBytes()))
+                .build();
+
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        return objectMapper.readValue(response.body(), SpotifyAccessTokenRefreshResponse.class);
     }
 
     public SpotifyRecentlyPlayedResponse getRecentlyPlayedTracks(String accessToken) throws IOException, InterruptedException {

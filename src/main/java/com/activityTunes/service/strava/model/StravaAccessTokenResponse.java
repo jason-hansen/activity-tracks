@@ -16,7 +16,7 @@ public class StravaAccessTokenResponse {
     private int expiresAt;
 
     @JsonProperty("expires_in")
-    private int expiresIn;
+    private int expiresIn; // 6 hours after it was created
 
     @JsonProperty("refresh_token")
     private String refreshToken;

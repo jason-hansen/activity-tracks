@@ -8,7 +8,6 @@ import com.activityTunes.service.spotify.model.SpotifyRecentlyPlayedResponse;
 import com.activityTunes.service.spotify.model.Track;
 import com.activityTunes.service.strava.model.DetailedActivity;
 import com.activityTunes.service.strava.model.StravaAccessTokenResponse;
-import com.activityTunes.service.strava.model.SummaryActivity;
 import com.activityTunes.service.track.TrackService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -31,8 +30,8 @@ public class StravaService {
 
     public void handleAuthCode(String authCode) throws IOException, InterruptedException {
         StravaAccessTokenResponse accessTokenResponse = stravaRequestingService.getAccessTokenFromAuthCode(authCode);
-        String uuid = dataRetrievingService.getUuidByStravaAthleteId(String.valueOf(accessTokenResponse.getAthlete().getId()));
-        dataPersistingService.persistStravaTokens(uuid, accessTokenResponse.getAthlete().getId(), accessTokenResponse.getAccessToken(), accessTokenResponse.getRefreshToken());
+//        String uuid = dataRetrievingService.getUuidByStravaAthleteId(String.valueOf(accessTokenResponse.getAthlete().getId()));
+        dataPersistingService.persistStravaTokens(accessTokenResponse.getAthlete().getId(), accessTokenResponse.getAccessToken(), accessTokenResponse.getRefreshToken());
     }
 
     public void handleWebhook(WebhookData webhookData) {
@@ -48,9 +47,8 @@ public class StravaService {
         String activityId = String.valueOf(webhookData.getObjectId());
 
         try {
-            String uuid = dataRetrievingService.getUuidByStravaAthleteId(athleteId);
-            String stravaAccessToken = dataRetrievingService.getStravaAccessTokenByUuid(uuid);
-            String spotifyAccessToken = dataRetrievingService.getSpotifyAccessTokenByUuid(uuid);
+            String stravaAccessToken = dataRetrievingService.getStravaAccessTokenByAthleteId(athleteId);
+            String spotifyAccessToken = dataRetrievingService.getSpotifyAccessTokenByAthleteId(athleteId);
             DetailedActivity detailedActivity = stravaRequestingService.getActivityById(stravaAccessToken, activityId);
             SpotifyRecentlyPlayedResponse recentlyPlayedResponse = spotifyRequestingService.getRecentlyPlayedTracks(spotifyAccessToken);
             List<Track> tracks = trackService.filterTracksPlayedDuringActivity(

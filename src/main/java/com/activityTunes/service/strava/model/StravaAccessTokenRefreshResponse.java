@@ -1,4 +1,4 @@
-package com.activityTunes.service.spotify.model;
+package com.activityTunes.service.strava.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
@@ -8,18 +8,20 @@ import lombok.RequiredArgsConstructor;
 @Data
 @AllArgsConstructor
 @RequiredArgsConstructor
-public class SpotifyAccessTokenResponse {
+public class StravaAccessTokenRefreshResponse {
+
     @JsonProperty("access_token")
     private String accessToken;
 
     @JsonProperty("token_type")
     private String tokenType;
 
+    @JsonProperty("expires_at")
+    private int expiresAt;
+
     @JsonProperty("expires_in")
-    private int expiresIn; // 1 hour after it was created
+    private int expiresIn; // 6 hours after it was created
 
     @JsonProperty("refresh_token")
     private String refreshToken;
-
-    private String scope;
 }

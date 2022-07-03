@@ -1,6 +1,5 @@
-package com.activityTunes.service.strava;
+package com.activityTunes.service.strava.model;
 
-import com.activityTunes.service.strava.model.DetailedActivity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
