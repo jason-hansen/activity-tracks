@@ -22,7 +22,7 @@ public class TrackService {
 
         recentlyPlayedResponse.getItems().forEach(item -> {
             if (item.getPlayedAt().after(start) && item.getPlayedAt().before(end)) {
-                tracks.add(0, item.getTrack()); // instead of reversing it
+                tracks.add(item.getTrack());
             }
         });
 
@@ -40,7 +40,8 @@ public class TrackService {
         });
 
         String newDescription = String.join("\n", data);
-        log.info("Transformed tracks into new part of description: " + newDescription);
+        newDescription += "\n\n-- by Activity Tunes";
+        log.info("Transformed tracks into new part of description: \n" + newDescription);
         return newDescription;
     }
 }

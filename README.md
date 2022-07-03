@@ -10,22 +10,20 @@
 - the app will work its magic after each activity is uploaded to Strava
 
 ### TODO
-- unit tests! at least for TrackService.java
 - error handling in api calls?
 - why spotify limit to 20 not accepting param of 50
-- how to actually store user id logins
-  - force strava auth first, then spotify auth
-    - have athlete id be the root of the storage
-    - via webhook, use owner_id (athlete id) to get access tokens
-- aws
-  - go over React tutorial https://aws.amazon.com/getting-started/hands-on/build-react-app-amplify-graphql/module-three/
+- aws  - go over React tutorial https://aws.amazon.com/getting-started/hands-on/build-react-app-amplify-graphql/
     - design frontend
       - login page
         - login/create account
+          - how to actually store user id logins
+            - force strava auth first, then spotify auth
+              - have athlete id be the root of the storage
+              - via webhook, use owner_id (athlete id) to get access tokens
       - logged in page
         - 2 auth buttons that don't link, but swap url then swap back when returns
         - switch to pause service
-      - about page
+        - about page
   - tie together both login options
     - mabye just have users auth with stava first and then I'll store a map of athlete id -> strava stuff & spotify stuff
   - database and not just in memory
