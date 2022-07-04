@@ -39,8 +39,8 @@ public class TrackService {
                                                         .collect(Collectors.joining(", ")));
         });
 
-        String newDescription = String.join("\n", data);
-        newDescription += "\n-- by Activity Tunes --";
+        String newDescription = "\n\n~ Activity Tracks ~\n- ";
+        newDescription += String.join("\n- ", data);
         return newDescription;
     }
 }
