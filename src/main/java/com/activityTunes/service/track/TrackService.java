@@ -40,8 +40,7 @@ public class TrackService {
         });
 
         String newDescription = String.join("\n", data);
-        newDescription += "\n\n-- by Activity Tunes";
-        log.info("Transformed tracks into new part of description: \n" + newDescription);
+        newDescription += "\n-- by Activity Tunes --";
         return newDescription;
     }
 }

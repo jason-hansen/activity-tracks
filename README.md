@@ -12,7 +12,8 @@
 ### TODO
 - error handling in api calls?
 - why spotify limit to 20 not accepting param of 50
-- aws  - go over React tutorial https://aws.amazon.com/getting-started/hands-on/build-react-app-amplify-graphql/
+- aws  
+  - go over React tutorial https://aws.amazon.com/getting-started/hands-on/build-react-app-amplify-graphql/
     - design frontend
       - login page
         - login/create account
@@ -24,10 +25,9 @@
         - 2 auth buttons that don't link, but swap url then swap back when returns
         - switch to pause service
         - about page
-  - tie together both login options
-    - mabye just have users auth with stava first and then I'll store a map of athlete id -> strava stuff & spotify stuff
-  - database and not just in memory
-  - auth via aws?
+  - tie together both login options? auth via aws?
+    - maybe just have users auth with stava first and then I'll store a map of athlete id -> strava stuff & spotify stuff
+- database and not just in memory
 - log4j.properties in /resources? logging colors? verbose config for DEBUG? etc.
 - readme: structure, code flow, how it works/diagrams (include in readme and actual site?)
 - handle when users revoke spotify/strava access

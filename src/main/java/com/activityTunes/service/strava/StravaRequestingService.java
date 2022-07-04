@@ -100,7 +100,7 @@ public class StravaRequestingService {
                 .header("Authorization", "Bearer " + accessToken)
                 .build();
 
-        log.info(String.format("Updated activity: %s with description: %s", detailedActivity.getId(), updatableActivity.getDescription()));
+        log.info(String.format("Updated activity: %s with description: \n%s", detailedActivity.getId(), updatableActivity.getDescription()));
         client.send(request, HttpResponse.BodyHandlers.ofString());
     }
 }
