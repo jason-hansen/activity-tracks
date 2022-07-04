@@ -28,9 +28,10 @@ public class StravaService {
     private final DataRetrievingService dataRetrievingService;
     private final TrackService trackService;
 
-    public void handleAuthCode(String authCode) throws IOException, InterruptedException {
+    public String handleAuthCode(String authCode) throws IOException, InterruptedException {
         StravaAccessTokenResponse accessTokenResponse = stravaRequestingService.getAccessTokenFromAuthCode(authCode);
         dataPersistingService.persistStravaTokens(String.valueOf(accessTokenResponse.getAthlete().getId()), accessTokenResponse.getAccessToken(), accessTokenResponse.getRefreshToken());
+        return String.valueOf(accessTokenResponse.getAthlete().getId());
     }
 
     public void handleWebhook(WebhookData webhookData) {

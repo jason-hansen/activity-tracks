@@ -4,11 +4,14 @@ import com.activityTunes.controller.strava.model.WebhookData;
 import com.activityTunes.service.strava.StravaService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.net.URI;
 import java.util.Map;
 
 @Slf4j
@@ -21,16 +24,18 @@ public class StravaController {
 
     @RequestMapping(value = {"/auth"}, method = RequestMethod.GET)
     @ResponseBody
-    public ResponseEntity<Object> callback(@RequestParam Map<String, String> params) {
+    public ResponseEntity<HttpHeaders> callback(@RequestParam Map<String, String> params) {
         String authCode = params.get("code");
-
+        String athleteId = null;
         try {
-            stravaService.handleAuthCode(authCode);
+            athleteId = stravaService.handleAuthCode(authCode);
         } catch (InterruptedException | IOException e) {
             e.printStackTrace();
         }
 
-        return new ResponseEntity<>(HttpStatus.OK);
+        HttpHeaders headers = new HttpHeaders();
+        headers.setLocation(URI.create("http://localhost:3000/strava?athlete_id=" + athleteId));
+        return new ResponseEntity<>(headers, HttpStatus.FOUND);
     }
 
     /**

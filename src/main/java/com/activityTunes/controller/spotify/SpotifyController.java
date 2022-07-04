@@ -2,11 +2,13 @@ package com.activityTunes.controller.spotify;
 
 import com.activityTunes.service.spotify.SpotifyService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.net.URI;
 import java.util.Map;
 
 @RestController
@@ -18,19 +20,17 @@ public class SpotifyController {
 
     @RequestMapping(value = {"/auth"}, method = RequestMethod.GET)
     @ResponseBody
-    public ResponseEntity<Boolean> callback(@RequestParam Map<String, String> params) {
+    public ResponseEntity<HttpHeaders> callback(@RequestParam Map<String, String> params) {
         String code = params.get("code");
-        String state = params.get("state");
-
-        if (!state.equals("callbackchecksthis")) {
-            return null;
-        }
-
+        String athleteId = params.get("state");
         try {
-            spotifyService.handleAuthCode(code);
+            spotifyService.handleAuthCode(code, athleteId);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return new ResponseEntity<>(HttpStatus.OK);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setLocation(URI.create("http://localhost:3000"));
+        return new ResponseEntity<>(headers, HttpStatus.FOUND);
     }
 }

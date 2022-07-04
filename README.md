@@ -11,12 +11,10 @@
 
 ### TODO
 - frontend
-  - make calls to strava auth and spotify auth
-  - hide music buttons until Strava returns with the athlete id
-    - add athlete id to the callback as a param so the backend can use it for storing the Spotify auth 
   - fix Spotify button style
   - add Apple Music button
   - info, FAQ, "Powered by Strava" graphic
+  - what's the point of manifest.json?
 - delete index.html in backend
 - rename everything to activity tracks from activity tunes
 - make frontend work well on mobile

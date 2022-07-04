@@ -86,3 +86,14 @@
   font-size: 0.85em;
   font-weight: 600;
 }
+
+.connect-with-spotify2 {
+  cursor: not-allowed;
+  background-color: #3d3d3d;
+  padding: 0.5em 0.75em;
+  border-radius: 5px;
+
+  color: black;
+  font-size: 0.85em;
+  font-weight: 600;
+}
