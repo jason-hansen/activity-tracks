@@ -10,27 +10,27 @@
 - the app will work its magic after each activity is uploaded to Strava
 
 ### TODO
+- frontend
+  - make calls to strava auth and spotify auth
+  - hide music buttons until Strava returns with the athlete id
+    - add athlete id to the callback as a param so the backend can use it for storing the Spotify auth 
+  - fix Spotify button style
+  - add Apple Music button
+  - info, FAQ, "Powered by Strava" graphic
+- delete index.html in backend
+- rename everything to activity tracks from activity tunes
+- make frontend work well on mobile
 - error handling in api calls?
 - why spotify limit to 20 not accepting param of 50
-- aws  
-  - go over React tutorial https://aws.amazon.com/getting-started/hands-on/build-react-app-amplify-graphql/
-    - design frontend
-      - login page
-        - login/create account
-          - how to actually store user id logins
-            - force strava auth first, then spotify auth
-              - have athlete id be the root of the storage
-              - via webhook, use owner_id (athlete id) to get access tokens
-      - logged in page
-        - 2 auth buttons that don't link, but swap url then swap back when returns
-        - switch to pause service
-        - about page
-  - tie together both login options? auth via aws?
-    - maybe just have users auth with stava first and then I'll store a map of athlete id -> strava stuff & spotify stuff
-- database and not just in memory
-- log4j.properties in /resources? logging colors? verbose config for DEBUG? etc.
+- aws React tutorial https://aws.amazon.com/getting-started/hands-on/build-react-app-amplify-graphql/
+- store athlete id and both auth tokens in a database
+  - NoSql option?
 - readme: structure, code flow, how it works/diagrams (include in readme and actual site?)
 - handle when users revoke spotify/strava access
   - strava it comes over the webhook?
   - spotify??
+- double check guidelines https://developers.strava.com/guidelines/ 
+  - does Spotify have something similar?
+- log4j.properties in /resources? logging colors? verbose config for DEBUG? etc.
+- add link? to the bottom of each Strava description
 - integrate with Apple Music
