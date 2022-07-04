@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Faster+One&display=swap');
+
+.App {
+  /* https://css-tricks.com/tinted-images-multiple-backgrounds/ */
+  background:
+    linear-gradient(
+      rgba(255, 255, 255, 0),
+      rgba(0, 0, 0, 0.476)
+      /* rgba(250, 96, 0, 0.433) */
+    ),
+    url(./assets/activity-tunes/feet.jpg);
+    /* url(./assets/activity-tunes/desert.jpg); */
+
+  background-size: cover;
+  background-position: top;
+  min-height: 100%;
+  height: 100vh;
+  position: relative;
+
+  /* background-color: #282c34; */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+
+  text-align: center;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    /* animation: App-logo-spin infinite 20s linear; */
+  }
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.App-logo {
+  height: 18vmin;
+  pointer-events: none;
+}
+
+.title {
+  font-family: 'Faster One', cursive;
+  font-size: 5em;
+}
+
+/* .background-image {
+  background-image: url(./assets/feet.jpg);
+  background-size: cover;
+  background-position: top;
+  min-height: 100%;
+  height: 100vh;
+  position: relative;
+} */
+
+.strava-logo {
+  height: 3em;
+}
+
+.connect-with-strava {
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.spotify-logo {
+  height: 1.5em;
+  padding-left: 0.5em;
+}
+
+.connect-with-spotify {
+  cursor: pointer;
+  background-color: #1DB054;
+  padding: 0.5em 0.75em;
+  border-radius: 5px;
+
+  font-size: 0.85em;
+  font-weight: 600;
+}
