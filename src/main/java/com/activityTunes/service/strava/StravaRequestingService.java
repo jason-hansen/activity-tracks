@@ -87,6 +87,10 @@ public class StravaRequestingService {
     }
 
     public void updateActivityDescription(String accessToken, DetailedActivity detailedActivity, String newDescription) throws IOException, InterruptedException {
+        if (newDescription.isBlank()) {
+            return;
+        }
+
         ObjectMapper objectMapper = new ObjectMapper();
         HttpClient client = HttpClient.newHttpClient();
 

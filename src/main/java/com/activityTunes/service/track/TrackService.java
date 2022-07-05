@@ -31,6 +31,10 @@ public class TrackService {
     }
 
     public String transformTracksToDescription(List<Track> tracks) {
+        if (tracks.isEmpty()) {
+            return "";
+        }
+
         List<String> data = new ArrayList<>();
         tracks.forEach(track -> {
             data.add(track.getName() + " by " + track.getArtists()
@@ -39,7 +43,7 @@ public class TrackService {
                                                         .collect(Collectors.joining(", ")));
         });
 
-        String newDescription = "\n\n~ Activity Tracks ~\n- ";
+        String newDescription = "\n~ Activity Tracks ~\n- ";
         newDescription += String.join("\n- ", data);
         return newDescription;
     }
