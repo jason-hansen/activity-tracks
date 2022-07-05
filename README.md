@@ -32,3 +32,15 @@
 - log4j.properties in /resources? logging colors? verbose config for DEBUG? etc.
 - add link? to the bottom of each Strava description
 - integrate with Apple Music
+
+### FUTURE FEATURE IDEAS
+- the potential to make a playlist from an activity's songs
+  - use activity id -> list of track ids
+  - create some url link? to navigate to and create a playlist for a user
+- an on/off switch to turn it off without revoking access?
+- responsive mobile website
+- emojis by song with the fastest split
+- emojis for song genres
+- activity mile splits and song beats per minute analysis
+- dark mode website
+- email subscribe list
