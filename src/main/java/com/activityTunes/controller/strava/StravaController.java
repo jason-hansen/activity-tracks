@@ -34,7 +34,7 @@ public class StravaController {
         }
 
         HttpHeaders headers = new HttpHeaders();
-        headers.setLocation(URI.create("http://localhost:3000/strava?athlete_id=" + athleteId));
+        headers.setLocation(URI.create("http://localhost:3000?athlete_id=" + athleteId));
         return new ResponseEntity<>(headers, HttpStatus.FOUND);
     }
 

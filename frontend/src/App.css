@@ -87,13 +87,17 @@
   font-weight: 600;
 }
 
-.connect-with-spotify2 {
-  cursor: not-allowed;
-  background-color: #3d3d3d;
+.apple-logo {
+  height: 1.5em;
+  padding-left: 0.5em;
+}
+
+.connect-with-apple {
+  cursor: pointer;
+  background-color: #9b9b9b;
   padding: 0.5em 0.75em;
   border-radius: 5px;
 
-  color: black;
   font-size: 0.85em;
   font-weight: 600;
 }

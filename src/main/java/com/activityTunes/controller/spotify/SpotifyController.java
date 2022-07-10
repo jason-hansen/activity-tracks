@@ -30,7 +30,7 @@ public class SpotifyController {
         }
 
         HttpHeaders headers = new HttpHeaders();
-        headers.setLocation(URI.create("http://localhost:3000"));
+        headers.setLocation(URI.create("http://localhost:3000?athlete_id=" + athleteId));
         return new ResponseEntity<>(headers, HttpStatus.FOUND);
     }
 }

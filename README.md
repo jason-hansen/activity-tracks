@@ -14,6 +14,7 @@
   - button styles
   - new component: info, FAQ, "Powered by Strava" graphic
   - delete index.html in backend
+  - "success" checkbox when strava auth responds? or show "Hello _athlete name_"!
 - rename everything to activity tracks from activity tunes
 - store athlete id and both auth tokens in a database
   - NoSql option?
