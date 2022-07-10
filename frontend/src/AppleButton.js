@@ -12,13 +12,13 @@ const AppleButton = () => {
 
     return (
         <div
-            className='connect-with-apple'
+            className='connect-with apple'
             onClick={() => onClick()}
         >
-            <span>Connect with</span>
+            <span className="">Connect with</span>
             <img
                 src={apple}
-                alt="apple"
+                alt="apple logo"
                 className='apple-logo'
             />
         </div>

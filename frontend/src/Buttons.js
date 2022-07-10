@@ -1,5 +1,6 @@
 import React, { useReducer, useEffect } from "react";
 import AppleButton from "./AppleButton";
+import MusicButtons from "./MusicButtons";
 
 import SpotifyButton from "./SpotifyButton";
 import StravaButton from "./StravaButton";
@@ -29,7 +30,7 @@ const reducer = (state, action) => {
         }
         case 'stravaResponse': {
             const { athleteId } = action.payload;
-            console.log(action.payload);
+            // console.log(action.payload);
             return {
                 ...state,
                 athleteId: athleteId
@@ -91,9 +92,10 @@ const Buttons = () => {
 
     return (
         <UserContext.Provider value={value}>
-            <StravaButton></StravaButton>
-            {state.athleteId && <SpotifyButton />}
-            {state.athleteId && <AppleButton />}
+            <div className="strava-button-container">
+                <StravaButton />
+            </div>
+            {state.athleteId && <MusicButtons />}
         </UserContext.Provider>
     )
 }

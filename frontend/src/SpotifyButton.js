@@ -12,13 +12,13 @@ const SpotifyButton = () => {
 
     return (
         <div
-            className='connect-with-spotify'
+            className='connect-with spotify'
             onClick={() => onClick()}
         >
-            <span>Connect with</span>
+            <span className="">Connect with</span>
             <img
                 src={spotify}
-                alt="spotify"
+                alt="spotify logo"
                 className='spotify-logo'
             />
         </div>

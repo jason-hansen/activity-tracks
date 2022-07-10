@@ -14,7 +14,7 @@
   background-size: cover;
   background-position: top;
   min-height: 100%;
-  height: 100vh;
+  /* height: 100vh; */
   position: relative;
 
   /* background-color: #282c34; */
@@ -22,7 +22,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  /* justify-content: center; */
   font-size: calc(10px + 2vmin);
   color: white;
 
@@ -63,41 +63,81 @@
   position: relative;
 } */
 
+.strava-button-container {
+  /* border: 1px solid red; */
+  width: 100%;
+  min-height: 3em;
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+.strava {
+  cursor: pointer;
+  border-radius: 5px;
+}
+
 .strava-logo {
   height: 3em;
 }
 
-.connect-with-strava {
-  cursor: pointer;
-  border-radius: 5px;
+.music-box {
+  width: 100%;
+  min-height: 5em;
+
+  background-color: rgba(0, 0, 0, 0.476);
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
 }
 
-.spotify-logo {
-  height: 1.5em;
-  padding-left: 0.5em;
-}
-
-.connect-with-spotify {
-  cursor: pointer;
+.spotify {
   background-color: #1DB054;
+}
+
+.connect-with {
+  cursor: pointer;
+
+  margin: 1em 1em 1em 1em;
   padding: 0.5em 0.75em;
+
   border-radius: 5px;
 
   font-size: 0.85em;
   font-weight: 600;
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  align-content: center;
+}
+
+.spotify-logo {
+  height: 1.5em;
+  padding-left: 0.25em;
+  order: 99;
+}
+
+.apple {
+  background-color: #9b9b9b;
 }
 
 .apple-logo {
   height: 1.5em;
   padding-left: 0.5em;
+  order: 99;
 }
 
-.connect-with-apple {
-  cursor: pointer;
-  background-color: #9b9b9b;
-  padding: 0.5em 0.75em;
-  border-radius: 5px;
-
-  font-size: 0.85em;
-  font-weight: 600;
+.powered-by-strava-logo {
+  margin: 20px 0px 0px 0px;
+  height: 2em;;
 }

@@ -11,10 +11,12 @@
 
 ### TODO
 - frontend
-  - button styles
   - new component: info, FAQ, "Powered by Strava" graphic
   - delete index.html in backend
+  - split out css? Put it in the .js files?
   - "success" checkbox when strava auth responds? or show "Hello _athlete name_"!
+  - store athlete id in state and don't just keep it in the url when it comes back from the HTTP 302
+  - add login button back in
 - rename everything to activity tracks from activity tunes
 - store athlete id and both auth tokens in a database
   - NoSql option?
@@ -39,6 +41,7 @@
   - use activity id -> list of track ids
   - create some url link? to navigate to and create a playlist for a user
 - an on/off switch to turn it off without revoking access?
+- custom track/description formatting
 - responsive mobile website
 - emojis by song with the fastest split
 - emojis for song genres
