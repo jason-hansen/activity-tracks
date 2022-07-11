@@ -1,12 +1,9 @@
 import React, { useReducer, useEffect } from "react";
-import AppleButton from "./AppleButton";
 import MusicButtons from "./MusicButtons";
-
-import SpotifyButton from "./SpotifyButton";
 import StravaButton from "./StravaButton";
 import UserContext from './UserContext'
 
-const BASE_API_URL = 'http://localhost:8081';
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
 const INITIAL_STATE = {
     athleteId: null,
@@ -22,7 +19,7 @@ const reducer = (state, action) => {
                 + '&approval_prompt=force'
                 + '&scope=read,activity:read_all,activity:write'
                 + '&state=asdf'
-                + '&redirect_uri=' + BASE_API_URL + '/api/strava/auth';
+                + '&redirect_uri=' + BACKEND_URL + '/api/strava/auth';
 
             return {
                 ...state
@@ -38,11 +35,12 @@ const reducer = (state, action) => {
         }
         case 'spotifyRequest': {
             window.location = 'https://accounts.spotify.com/authorize?'
-            + '&client_id=7225d09dece944b7879335138c2d458b'
-            + '&response_type=code'
-            + '&scope=user-read-email+user-read-recently-played+playlist-modify-public+playlist-modify-private+playlist-read-collaborative'
-            + '&state=' + state.athleteId
-            + '&redirect_uri='+ BASE_API_URL + '/api/spotify/auth';
+                + '&client_id=7225d09dece944b7879335138c2d458b'
+                + '&response_type=code'
+                + '&show_dialog=true'
+                + '&scope=user-read-email+user-read-recently-played+playlist-modify-public+playlist-modify-private+playlist-read-collaborative'
+                + '&state=' + state.athleteId
+                + '&redirect_uri=' + BACKEND_URL + '/api/spotify/auth';
 
             return {
                 ...state
@@ -55,7 +53,7 @@ const reducer = (state, action) => {
         }
 
         default:
-        throw new Error(`Invalid action type: ${action.type}`)
+            throw new Error(`Invalid action type: ${action.type}`)
     }
 }
 
@@ -77,7 +75,7 @@ const Buttons = () => {
     useEffect(() => {
         if (!state.athleteId) {
             const athleteId = (new URLSearchParams(window.location.search)).get("athlete_id");
-            if (athleteId && athleteId != 'null') {
+            if (athleteId && athleteId !== 'null') {
                 dispatch({ type: 'stravaResponse', payload: { athleteId } });
             }
         }

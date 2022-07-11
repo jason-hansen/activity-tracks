@@ -1,6 +1,7 @@
 package com.activityTunes.controller.spotify;
 
 import com.activityTunes.service.spotify.SpotifyService;
+import io.github.cdimascio.dotenv.Dotenv;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -18,6 +19,8 @@ public class SpotifyController {
 
     private final SpotifyService spotifyService;
 
+    public static final String FRONTEND_URL = Dotenv.configure().load().get("FRONTEND_URL");
+
     @RequestMapping(value = {"/auth"}, method = RequestMethod.GET)
     @ResponseBody
     public ResponseEntity<HttpHeaders> callback(@RequestParam Map<String, String> params) {
@@ -30,7 +33,7 @@ public class SpotifyController {
         }
 
         HttpHeaders headers = new HttpHeaders();
-        headers.setLocation(URI.create("http://localhost:3000?athlete_id=" + athleteId));
+        headers.setLocation(URI.create(FRONTEND_URL + "?athlete_id=" + athleteId));
         return new ResponseEntity<>(headers, HttpStatus.FOUND);
     }
 }

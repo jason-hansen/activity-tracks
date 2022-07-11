@@ -2,6 +2,7 @@ package com.activityTunes.controller.strava;
 
 import com.activityTunes.controller.strava.model.WebhookData;
 import com.activityTunes.service.strava.StravaService;
+import io.github.cdimascio.dotenv.Dotenv;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
@@ -22,6 +23,8 @@ public class StravaController {
 
     private final StravaService stravaService;
 
+    public static final String FRONTEND_URL = Dotenv.configure().load().get("FRONTEND_URL");
+
     @RequestMapping(value = {"/auth"}, method = RequestMethod.GET)
     @ResponseBody
     public ResponseEntity<HttpHeaders> callback(@RequestParam Map<String, String> params) {
@@ -34,7 +37,7 @@ public class StravaController {
         }
 
         HttpHeaders headers = new HttpHeaders();
-        headers.setLocation(URI.create("http://localhost:3000?athlete_id=" + athleteId));
+        headers.setLocation(URI.create(FRONTEND_URL + "?athlete_id=" + athleteId));
         return new ResponseEntity<>(headers, HttpStatus.FOUND);
     }
 
