@@ -1,5 +1,6 @@
 package com.activityTunes.service.data;
 
+import com.activityTunes.service.data.model.AuthTokens;
 import com.activityTunes.service.data.model.UserAuth;
 import com.activityTunes.service.spotify.SpotifyRequestingService;
 import com.activityTunes.service.spotify.model.SpotifyAccessTokenRefreshResponse;
@@ -21,23 +22,27 @@ public class DataRetrievingService {
     private StravaRequestingService stravaRequestingService;
     private SpotifyRequestingService spotifyRequestingService;
 
-    public String getStravaAccessTokenByAthleteId(String athleteId) throws IOException, InterruptedException {
-        String refreshToken = dataPersistingService.data
+    public String getStravaAccessTokenByAthleteId(String athleteId) throws Exception {
+        AuthTokens stravaTokens = dataPersistingService.data
                 .getOrDefault(athleteId, new UserAuth())
-                .getStravaTokens()
-                .getRefreshToken();
-        StravaAccessTokenRefreshResponse refreshResponse = getRefreshedStravaAccessToken(refreshToken);
+                .getStravaTokens();
+        if (stravaTokens == null) {
+            throw new Exception("No Strava authentication tokens stored for athlete id" + athleteId);
+        }
+        StravaAccessTokenRefreshResponse refreshResponse = getRefreshedStravaAccessToken(stravaTokens.getRefreshToken());
         dataPersistingService.persistStravaTokens(athleteId, refreshResponse.getAccessToken(), refreshResponse.getRefreshToken());
         return refreshResponse.getAccessToken();
     }
 
-    public String getSpotifyAccessTokenByAthleteId(String athleteId) throws IOException, InterruptedException {
-        String refreshToken = dataPersistingService.data
+    public String getSpotifyAccessTokenByAthleteId(String athleteId) throws Exception {
+        AuthTokens spotifyTokens = dataPersistingService.data
                 .getOrDefault(athleteId, new UserAuth())
-                .getSpotifyTokens()
-                .getRefreshToken();
-        SpotifyAccessTokenRefreshResponse refreshResponse = getRefreshedSpotifyAccessToken(refreshToken);
-        dataPersistingService.persistSpotifyTokens(athleteId, refreshResponse.getAccessToken(), refreshToken);
+                .getSpotifyTokens();
+        if (spotifyTokens == null) {
+            throw new Exception("No Spotify authentication tokens stored for athlete id" + athleteId);
+        }
+        SpotifyAccessTokenRefreshResponse refreshResponse = getRefreshedSpotifyAccessToken(spotifyTokens.getRefreshToken());
+        dataPersistingService.persistSpotifyTokens(athleteId, refreshResponse.getAccessToken(), spotifyTokens.getRefreshToken());
         return refreshResponse.getAccessToken();
     }
 

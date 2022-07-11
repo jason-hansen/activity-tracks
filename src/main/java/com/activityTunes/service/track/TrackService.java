@@ -43,7 +43,7 @@ public class TrackService {
                                                         .collect(Collectors.joining(", ")));
         });
 
-        String newDescription = "\n~ Activity Tracks ~\n- ";
+        String newDescription = "~ Activity Tracks ~\n- ";
         newDescription += String.join("\n- ", data);
         return newDescription;
     }

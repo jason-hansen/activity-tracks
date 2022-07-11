@@ -20,8 +20,15 @@ public class UpdatableActivity {
         this.commute = detailedActivity.isCommute();
         this.trainer = detailedActivity.isTrainer();
         this.hide_from_home = detailedActivity.isHide_from_home();
-        this.description = detailedActivity.getDescription() + "\n" + newDescription;
+        this.description = appendDescription(detailedActivity.getDescription(), newDescription);
         this.type = detailedActivity.getType();
         this.gear_id = detailedActivity.getGear_id();
+    }
+
+    public String appendDescription(String existingDescription, String newDescription) {
+        if (existingDescription.isBlank()) {
+            return newDescription;
+        }
+        return existingDescription + "\n" + newDescription;
     }
 }

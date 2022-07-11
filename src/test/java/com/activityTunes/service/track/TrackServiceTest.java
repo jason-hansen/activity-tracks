@@ -57,7 +57,7 @@ class TrackServiceTest {
     void testTransformTracksToDescription() {
         // GIVEN
         List<Track> tracks = createTestTracks();
-        String expected = "\n~ Activity Tracks ~\n- Song 1 by Artist 1\n- Song 2 by Artist 1, Artist 2\n- Song 3 by Artist 2";
+        String expected = "~ Activity Tracks ~\n- Song 1 by Artist 1\n- Song 2 by Artist 1, Artist 2\n- Song 3 by Artist 2";
 
         // WHEN
         String actual = trackService.transformTracksToDescription(tracks);

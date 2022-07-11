@@ -57,7 +57,7 @@ public class StravaService {
                     computeEndTimeMillis(detailedActivity.getStart_date().getTime(), detailedActivity.getElapsed_time()));
             String newDescription = trackService.transformTracksToDescription(tracks);
             stravaRequestingService.updateActivityDescription(stravaAccessToken, detailedActivity, newDescription);
-        } catch (IOException | InterruptedException e) {
+        } catch (Exception e) {
             log.info("Wasn't able to handle the webhook correctly");
             e.printStackTrace();
         }
