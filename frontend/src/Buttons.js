@@ -2,6 +2,7 @@ import React, { useReducer, useEffect } from "react";
 import MusicButtons from "./MusicButtons";
 import StravaButton from "./StravaButton";
 import UserContext from './UserContext'
+import './Buttons.css';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 

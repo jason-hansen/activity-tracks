@@ -4,140 +4,44 @@
   /* https://css-tricks.com/tinted-images-multiple-backgrounds/ */
   background:
     linear-gradient(
-      rgba(255, 255, 255, 0),
-      rgba(0, 0, 0, 0.476)
+      rgba(55, 55, 55, 0.668),
+      rgba(0, 0, 0, 0.8)
       /* rgba(250, 96, 0, 0.433) */
     ),
-    url(./assets/activity-tunes/feet.jpg);
-    /* url(./assets/activity-tunes/desert.jpg); */
+    url(./assets/activity-tunes/water.jpg);
 
   background-size: cover;
-  background-position: top;
+  background-position: center;
   min-height: 100%;
-  /* height: 100vh; */
   position: relative;
 
-  /* background-color: #282c34; */
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* justify-content: center; */
+  /* justify-content: center; centers vertically */
   font-size: calc(10px + 2vmin);
   color: white;
-
-  text-align: center;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    /* animation: App-logo-spin infinite 20s linear; */
-  }
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
 
 .App-logo {
-  height: 18vmin;
+  height: 5em;
   pointer-events: none;
+  margin: 1.5em 0em -1em 0em;
 }
 
 .title {
-  font-family: 'Faster One', cursive;
+  font-family: 'Faster One', bold;
   font-size: 4em;
+  text-align: center;
 }
 
-/* .background-image {
-  background-image: url(./assets/feet.jpg);
-  background-size: cover;
-  background-position: top;
-  min-height: 100%;
-  height: 100vh;
-  position: relative;
-} */
+.subtitle {
+  max-width: 80%;
 
-.strava-button-container {
-  /* border: 1px solid red; */
-  width: 100%;
-  min-height: 3em;
+  font-size: 1em;
+  color: #c5c5c5;
+  text-align: center;
 
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
-}
-
-.strava {
-  cursor: pointer;
-  border-radius: 5px;
-}
-
-.strava-logo {
-  height: 3em;
-}
-
-.music-box {
-  width: 100%;
-  min-height: 5em;
-
-  background-color: rgba(0, 0, 0, 0.476);
-
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
-}
-
-.spotify {
-  background-color: #1DB054;
-}
-
-.connect-with {
-  cursor: pointer;
-
-  margin: 1em 1em 1em 1em;
-  padding: 0.5em 0.75em;
-
-  border-radius: 5px;
-
-  font-size: 0.85em;
-  font-weight: 600;
-
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  align-items: center;
-  align-content: center;
-}
-
-.spotify-logo {
-  height: 1.5em;
-  padding-left: 0.25em;
-  order: 99;
-}
-
-.apple {
-  background-color: #9b9b9b;
-}
-
-.apple-logo {
-  height: 1.5em;
-  padding-left: 0.5em;
-  order: 99;
-}
-
-.powered-by-strava-logo {
-  margin: 20px 0px 0px 0px;
-  height: 2em;;
+  margin: 1em 0em 0em 0em;
 }
