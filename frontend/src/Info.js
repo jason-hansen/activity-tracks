@@ -40,23 +40,13 @@ const Info = () => {
                                 When do my tracks get loaded in?
                             </div>
                             <div className="answer-container">
-                                As soon as you save an activity. It may take a minute as we contact your music service, so refresh in a minute if you don't see it immediately.
+                                As soon as you save an activity. It may take a few seconds as we contact your music service, so wait a minute and then refresh if you don't see it immediately.
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div className="footer">
-                {/* <div>
-                    <iframe
-                        src="https://ghbtns.com/github-btn.html?user=jason-hansen&type=follow&count=true&size=large"
-                        frameBorder={0}
-                        scrolling={0}
-                        width={230}
-                        height={30}
-                        title="GitHub">
-                    </iframe>
-                </div> */}
                 <div>
                     <img
                         src={poweredByStrava}

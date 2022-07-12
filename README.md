@@ -15,6 +15,10 @@
     - make ResponseEntity on callbacks have a body that the frontend can parse, not just url params?
     - store athlete id in state and don't just keep it in the url when it comes back from the HTTP 302
   - add logout button back in?
+- backend logging
+  - don't print out whole data storage when updating
+  - when authenticating, log athlete name?
+  - add better detail when logging received webhook event
 - rename everything to activity tracks from activity tunes
 - store athlete id and both auth tokens in a database
   - NoSql option?

@@ -7,8 +7,8 @@ import Info from './Info';
 function App() {
 
   return (
-    <div className="App">
-      <img src={logo} className="App-logo" alt="logo" />
+    <div className='App'>
+      <img src={logo} className='App-logo' alt='logo' />
       <div className='title'>
         Activity Tracks
       </div>

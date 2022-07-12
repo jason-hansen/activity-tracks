@@ -1,4 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Faster+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@200;400;600;700&display=swap');
+/*
+color: #fa6000;
+color: #1db954
+*/
 
 .App {
   /* https://css-tricks.com/tinted-images-multiple-backgrounds/ */
@@ -6,7 +11,6 @@
     linear-gradient(
       rgba(55, 55, 55, 0.668),
       rgba(0, 0, 0, 0.8)
-      /* rgba(250, 96, 0, 0.433) */
     ),
     url(./assets/activity-tunes/water.jpg);
 
@@ -20,6 +24,8 @@
   flex-direction: column;
   align-items: center;
   /* justify-content: center; centers vertically */
+
+  font-family: 'Mulish', sans-serif;
   font-size: calc(10px + 2vmin);
   color: white;
 }
@@ -31,8 +37,8 @@
 }
 
 .title {
-  font-family: 'Faster One', bold;
-  font-size: 4em;
+  font-family: 'Faster One', sans-serif;
+  font-size: 3.5em;
   text-align: center;
 }
 
@@ -44,4 +50,51 @@
   text-align: center;
 
   margin: 1em 0em 0em 0em;
+}
+
+/* https://codepen.io/JanickFischr/pen/BYvVqP */
+.gradient {
+  /* https://coolors.co/gradient-palette/fa6000-ca327b?number=7 */
+  background: linear-gradient(-45deg, #FA6000ff, #F25814ff, #EA5129ff, #E2493Eff, #DA4152ff, #D23A67ff, #CA327Bff);
+  background-size: 400% 400%;
+
+  animation:          Gradient 15s ease infinite;
+  -moz-animation:     Gradient 15s ease infinite;
+  -webkit-animation:  Gradient 15s ease infinite;
+}
+
+@keyframes Gradient {
+  0% {
+  background-position: 0% 50%
+  }
+  50% {
+  background-position: 100% 50%
+  }
+  100% {
+  background-position: 0% 50%
+  }
+}
+
+@-moz-keyframes Gradient {
+  0% {
+  background-position: 0% 50%
+  }
+  50% {
+  background-position: 100% 50%
+  }
+  100% {
+  background-position: 0% 50%
+  }
+}
+
+@-webkit-keyframes Gradient {
+  0% {
+  background-position: 0% 50%
+  }
+  50% {
+  background-position: 100% 50%
+  }
+  100% {
+  background-position: 0% 50%
+  }
 }

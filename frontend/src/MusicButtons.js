@@ -6,7 +6,7 @@ import AppleButton from "./AppleButton";
 const MusicButtons = () => {
 
     return (
-        <div className='music-box'>
+        <div className='music-box gradient'>
             <SpotifyButton />
             <AppleButton />
         </div>
